@@ -1,13 +1,13 @@
-﻿@model GraniteHouse.Models.ProductTypes
+﻿@model GraniteHouse.Models.SpecialTags
 @{
     ViewData["Title"] = "Edit -";
 
 }
 <br />
-<h2 class="text-info">Edit Product Type</h2>
+<h2 class="text-info">Edit Special Tags</h2>
 <form method="post" asp-action="Edit">
     <div class="p-4 border rounded">
-        <input type="hidden" asp-for="Id"/>
+        <input type="hidden" asp-for="Id" />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
         <div class="form-group row">
