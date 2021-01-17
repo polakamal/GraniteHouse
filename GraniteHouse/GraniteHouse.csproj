@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Admin\Views\SpecialTags\**" />
+    <Content Remove="Areas\Admin\Views\SpecialTags\**" />
+    <EmbeddedResource Remove="Areas\Admin\Views\SpecialTags\**" />
+    <None Remove="Areas\Admin\Views\SpecialTags\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.10" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.10" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.10" />
@@ -17,6 +24,14 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Areas\Admin\Views\SpecialTags\Delete.cshtml" />
+    <None Include="Areas\Admin\Views\SpecialTags\Create.cshtml" />
+    <None Include="Areas\Admin\Views\SpecialTags\Details.cshtml" />
+    <None Include="Areas\Admin\Views\SpecialTags\Edit.cshtml" />
+    <None Include="Areas\Admin\Views\SpecialTags\Index.cshtml" />
   </ItemGroup>
 
 </Project>
