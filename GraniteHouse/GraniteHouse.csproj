@@ -23,15 +23,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="Areas\Admin\Views\SpecialTags\Delete.cshtml" />
     <None Include="Areas\Admin\Views\SpecialTags\Create.cshtml" />
     <None Include="Areas\Admin\Views\SpecialTags\Details.cshtml" />
     <None Include="Areas\Admin\Views\SpecialTags\Edit.cshtml" />
     <None Include="Areas\Admin\Views\SpecialTags\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\ProductImage\" />
   </ItemGroup>
 
 </Project>
