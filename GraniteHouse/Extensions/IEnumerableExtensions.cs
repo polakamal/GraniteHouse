@@ -8,21 +8,18 @@ namespace GraniteHouse.Extensions
 {
     public static class IEnumerableExtensions
     {
-
-        public static IEnumerable<SelectListItem> ToSelectListItem<T>(this IEnumerable<T> items, int selectedValue)
+        public static IEnumerable<SelectListItem> ToSelectListItems<T>(this IEnumerable<T> items ,int selectedValue) 
         {
-            Console.WriteLine("selectedValue " + selectedValue);
             return from item in items
                    select new SelectListItem
                    {
-                       
                        Text = item.GetPropertyValue("Name"),
                        Value = item.GetPropertyValue("Id"),
-                       Selected = item.GetPropertyValue("Id").Equals(selectedValue.ToString()),
-                       
-                   };
-             
-        }
+                       Selected = item.GetPropertyValue("Id").Equals(selectedValue.ToString())
 
+                   };
+        
+        
+        } 
     }
 }

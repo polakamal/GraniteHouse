@@ -48,43 +48,51 @@ namespace GraniteHouse.Controllers
 
             return View(productsVM);
         }
+        //post action
         [HttpPost,ActionName("Create")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreatePost() 
+        public async Task<IActionResult> CreatPost() 
         {
-            if (ModelState.IsValid) 
+
+            if (!ModelState.IsValid) 
             {
+
                 return View(productsVM);
+                
             }
             _db.Products.Add(productsVM.Products);
             await _db.SaveChangesAsync();
-            //image been saved
-            string WebRootPath = _hostingEnvironment.ContentRootPath;
+            //image is been saved
+            string webRootPath = _hostingEnvironment.WebRootPath;
             var files = HttpContext.Request.Form.Files;
-            var productsFromDb = _db.Products.Find(productsVM.Products.Id);
-            if (files.Count() !=0) 
+            var productsFromDb = _db.Products.Find(productsVM.Products.Id); 
+            if(files.Count !=0)
             {
-                //Image has been uploaded
-                var uploads = Path.Combine(WebRootPath, SD.ImageFolder);
+                //image has been uploaded
+                var uploads = Path.Combine(webRootPath, SD.ImageFolder);
                 var extension = Path.GetExtension(files[0].FileName);
-                using (var filestream = new FileStream(Path.Combine(uploads, productsVM.Products.Id+extension) ,FileMode.Create)) 
+                using (var filestream = new FileStream(Path.Combine(uploads, productsVM.Products.Id + extension) ,FileMode.Create)) 
                 {
                     files[0].CopyTo(filestream);
-                    
+                 
                 }
                 productsFromDb.Image = @"\" + SD.ImageFolder + @"\" + productsVM.Products.Id + extension;
 
             }
             else 
             {
-            //when user not upload image
-            var uploads = Path.Combine(WebRootPath, SD.ImageFolder + @"\" + SD.DefaultProductImage);
-                System.IO.File.Copy(uploads, WebRootPath + @"\" + SD.ImageFolder + @"\" + productsVM.Products.Id + ".png");
-                productsFromDb.Image =  @"\"+SD.ImageFolder + @"\" + productsVM.Products.Id + ".png";
-                
+
+                //when user not uploaded images
+                var uploads = Path.Combine(webRootPath,SD.ImageFolder + @"\" + SD.DefaultProductImage );
+                System.IO.File.Copy(uploads, webRootPath + @"\" + SD.ImageFolder+@"\" + productsVM.Products.Id + ".png");
+                productsFromDb.Image = @"\" + SD.ImageFolder + @"\" + productsVM.Products.Id + ".png";
+
+
             }
            await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        
         }
+    
     }
 }

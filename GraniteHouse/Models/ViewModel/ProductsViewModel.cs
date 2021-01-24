@@ -11,6 +11,5 @@ namespace GraniteHouse.Models.ViewModel
         public IEnumerable<ProductTypes> ProductTypes { get; set; }
         public IEnumerable<SpecialTags> SpecialTags { get; set; }
 
-
     }
 }
