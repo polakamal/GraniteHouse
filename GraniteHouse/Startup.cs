@@ -35,6 +35,11 @@ namespace GraniteHouse
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddSession(options=> {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+            
+            }); 
 
         }
 
@@ -59,7 +64,7 @@ namespace GraniteHouse
 
             app.UseAuthentication();
             app.UseAuthorization();
-            
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
 

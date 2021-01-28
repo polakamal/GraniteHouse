@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@using GraniteHouse.Extensions
+@using GraniteHouse.utility
+
+@inject IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -6,25 +12,52 @@
     <title>@ViewData["Title"] GraniteHouse</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/jquery-ui.css" />
+    <link rel="stylesheet" href="~/css/jquery.timepicker.css" />
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 </head>
 <body>
     <header>
 
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" >
-              
-            <a class="navbar-brand" href ="#">Granite House</a>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+
+            <a class="navbar-brand" asp-action="Index" asp-area="Customer" asp-controller="Home">Granite House</a>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item"><a class="nav-link" asp-action="Index" asp-area="Admin" asp-controller="ProductsTypes">Products Types</a></li>
                     <li class="nav-item"><a class="nav-link" asp-action="Index" asp-area="Admin" asp-controller="SpecialTags">Special Tags</a></li>
                     <li class="nav-item"><a class="nav-link" asp-action="Index" asp-area="Admin" asp-controller="Products">Products</a></li>
 
+                    @if (HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssShopingCart") != null)
+                    {
+
+        <li style="color:white">
+            <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
+                <i class="fas fa-shopping-cart"></i> &nbsp;
+                @{ var count = HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssShopingCart").Count; }
+                (@count)
+
+            </a>
+
+        </li>
+ }
+    else
+    {
+
+<li style="color:white">
+    <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
+        <i class="fas fa-shopping-cart"></i> &nbsp;
+        (0)
+    </a>
+
+</li>
+}
                 </ul>
-                </div>
-               <div>
-                   <partial name="_LoginPartial" />
-               </div>
+            </div>
+            <div>
+                <partial name="_LoginPartial" />
+            </div>
 
         </nav>
 
@@ -72,7 +105,9 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/jquery-ui.js" asp-append-version="true"></script>
+    <script src="~/js/jquery.timepicker.js" asp-append-version="true"></script>
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>
- 
