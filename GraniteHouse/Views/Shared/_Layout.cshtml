@@ -28,31 +28,30 @@
                     <li class="nav-item"><a class="nav-link" asp-action="Index" asp-area="Admin" asp-controller="ProductsTypes">Products Types</a></li>
                     <li class="nav-item"><a class="nav-link" asp-action="Index" asp-area="Admin" asp-controller="SpecialTags">Special Tags</a></li>
                     <li class="nav-item"><a class="nav-link" asp-action="Index" asp-area="Admin" asp-controller="Products">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-action="Index" asp-area="Admin" asp-controller="AdminUsers">Admin User</a></li>
 
                     @if (HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssShopingCart") != null)
                     {
 
-        <li style="color:white">
-            <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
-                <i class="fas fa-shopping-cart"></i> &nbsp;
-                @{ var count = HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssShopingCart").Count; }
-                (@count)
+                <li style="color:white">
+                    <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
+                        <i class="fas fa-shopping-cart"></i> &nbsp;
+                        @{ var count = HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssShopingCart").Count; }
+                        (@count)
 
-            </a>
+                    </a>
 
-        </li>
- }
-    else
-    {
+                </li> }
+                            else
+                            {
 
-<li style="color:white">
-    <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
-        <i class="fas fa-shopping-cart"></i> &nbsp;
-        (0)
-    </a>
+                <li style="color:white">
+                    <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
+                        <i class="fas fa-shopping-cart"></i> &nbsp;
+                        (0)
+                    </a>
 
-</li>
-}
+                </li>}
                 </ul>
             </div>
             <div>
