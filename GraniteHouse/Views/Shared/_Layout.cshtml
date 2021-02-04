@@ -25,11 +25,16 @@
             <a class="navbar-brand" asp-action="Index" asp-area="Customer" asp-controller="Home">Granite House</a>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item"><a class="nav-link" asp-action="Index" asp-area="Admin" asp-controller="ProductsTypes">Products Types</a></li>
-                    <li class="nav-item"><a class="nav-link" asp-action="Index" asp-area="Admin" asp-controller="SpecialTags">Special Tags</a></li>
-                    <li class="nav-item"><a class="nav-link" asp-action="Index" asp-area="Admin" asp-controller="Products">Products</a></li>
-                    <li class="nav-item"><a class="nav-link" asp-action="Index" asp-area="Admin" asp-controller="AdminUsers">Admin User</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-action="Index" asp-area="Customer" asp-controller="Home">Home</a></li>
 
+                    @if (User.IsInRole(SD.SuperAdminEndUser))
+                    {
+
+                <li class="nav-item"><a class="nav-link" asp-action="Index" asp-area="Admin" asp-controller="ProductsTypes">Products Types</a></li>
+                <li class="nav-item"><a class="nav-link" asp-action="Index" asp-area="Admin" asp-controller="SpecialTags">Special Tags</a></li>
+                <li class="nav-item"><a class="nav-link" asp-action="Index" asp-area="Admin" asp-controller="Products">Products</a></li>
+                 <li class="nav-item"><a class="nav-link" asp-action="Index" asp-area="Admin" asp-controller="AdminUsers">Admin User</a></li>
+                 }
                     @if (HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssShopingCart") != null)
                     {
 

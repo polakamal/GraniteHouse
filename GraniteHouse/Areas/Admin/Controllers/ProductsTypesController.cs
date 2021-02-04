@@ -1,5 +1,7 @@
 ﻿using GraniteHouse.Data;
 using GraniteHouse.Models;
+using GraniteHouse.utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,6 +10,8 @@ using System.Threading.Tasks;
 
 namespace GraniteHouse.Areas.Admin.Controllers
 {
+    [Authorize(Roles = SD.SuperAdminEndUser)]
+
     [Area("Admin")]
     public class ProductsTypesController : Controller
     {
